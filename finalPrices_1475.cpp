@@ -27,6 +27,8 @@ Output: [9,0,1,6]
 
 #include<iostream>
 #include<vector>
+#include<stack>
+#include<algorithm>
 
 using namespace std;
 
@@ -47,46 +49,32 @@ public:
 };
 
 // APPROACH 2 : BETTER THAN PREVIOUS ONE
-// class Solution {
-// public:
-//     vector<int> finalPrices(vector<int>& prices) {
-//         int n = prices.size();
-//         stack<int> st;
-//         vector<int> res;
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        int n = prices.size();
+        stack<int> st;
+        vector<int> res;
 
-//         for(int i=n-1;i>=0;i--) { 
+        for(int i=n-1;i>=0;i--) { 
 
-//             while(!st.empty() && st.top()> prices[i]) 
-//                st.pop();
+            while(!st.empty() && st.top()> prices[i]) 
+               st.pop();
 
-//             if(st.empty()) 
-//                 res.push_back(0);
-//             else 
-//                 res.push_back(st.top());
+            if(st.empty()) 
+                res.push_back(0);
+            else 
+                res.push_back(st.top());
 
-//             st.push(prices[i]);
-//         }
+            st.push(prices[i]);
+        }
 
-//         reverse(res.begin(), res.end());
+        reverse(res.begin(), res.end());
 
-//         for(int i=0;i<n;i++) {
-//             res[i] = prices[i] -res[i];
-//         }
+        for(int i=0;i<n;i++) {
+            res[i] = prices[i] -res[i];
+        }
 
-//         return res;
-//     }
-// };
-
-int main(){
-
-    vector<int> nums = {8,4,6,2,3};
-
-    Solution sol;
-
-    vector<int> array = sol.finalPrices(nums);
-
-    for (auto& num : array)
-        cout << num << " ";
-
-    return 0;
-}
+        return res;
+    }
+};

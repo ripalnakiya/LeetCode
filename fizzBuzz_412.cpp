@@ -6,11 +6,11 @@ answer[i] == "Fizz" if i is divisible by 3.
 answer[i] == "Buzz" if i is divisible by 5.
 answer[i] == i (as a string) if none of the above conditions are true.
 */
+
 #include<iostream>
 #include<vector>
 #include<map>
 #include<string>
-
 using namespace std;
 
 class Solution {

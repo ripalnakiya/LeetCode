@@ -28,10 +28,9 @@ Ashe is poisoned for seconds 1, 2, and 3, which is 3 seconds in total.
 #include<iostream>
 #include<vector>
 #include<algorithm>
-
 using namespace std;
 
-// Optimized version of APPROACH 1
+// APPROACH 1 : OPTIMAZED APPROACH 2
 class Solution {
 public:
     int findPoisonedDuration(vector<int>& timeSeries, int duration) {
@@ -42,71 +41,59 @@ public:
     }
 };
 
-// APPROACH 1
-// class Solution {
-// public:
-//     int findPoisonedDuration(vector<int>& timeSeries, int duration) {
-//         int size = timeSeries.size();
-//         int diff = 0;
-//         int total = 0;
-//         for(int i = 0; i < size-1 ; i++) {
-//             diff = timeSeries[i+1] - timeSeries[i];
-//             total += min(duration, diff);
-//         }
-//         cout<<total<<" ";
-//         total += duration;
-//         return total;
-//     }
-// };
+// APPROACH 2 : OPTIMIZED APPROACH 3
+class Solution {
+public:
+    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
+        int size = timeSeries.size();
+        int diff = 0;
+        int total = 0;
+        for(int i = 0; i < size-1 ; i++) {
+            diff = timeSeries[i+1] - timeSeries[i];
+            total += min(duration, diff);
+        }
+        cout<<total<<" ";
+        total += duration;
+        return total;
+    }
+};
 
-// APPROACH 2 : THIS APPROACH TAKES HIGHER TIME FOR EXECUTION
-// class Solution {
-// public:
-//     int findPoisonedDuration(vector<int>& timeSeries, int duration) {
-//         if(timeSeries.empty())
-//             return 0;
 
-//         int count = 0, i = 0;
+// APPROACH 3 : THIS APPROACH TAKES HIGHER TIME FOR EXECUTION
+class Solution {
+public:
+    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
+        if(timeSeries.empty())
+            return 0;
 
-//         int tsize = timeSeries.size();
-//         int size = (timeSeries.back() - timeSeries.front())+duration+1;
+        int count = 0, i = 0;
 
-//         vector<int> play(size);
+        int tsize = timeSeries.size();
+        int size = (timeSeries.back() - timeSeries.front())+duration+1;
 
-//         for(int second = timeSeries[0] ; second <= timeSeries.back()+duration+1, i<tsize ;) {
-//             if(second == timeSeries[i]){
-//                 {
-//                     int p = 0;
-//                     while(p < duration){
-//                         play[second-timeSeries[0]] = 1;
-//                         ++count;
-//                         ++p;
-//                         ++second;
-//                         if(i != tsize-1)
-//                             if(second == timeSeries[i+1])
-//                                 break;
-//                     }
-//                 }
-//                 if(i == tsize-1 )
-//                     break;
-//                 i++;            
-//             }
-//             else
-//                 ++second;
-//         }
-//         return count;
-//     }
-// };
+        vector<int> play(size);
 
-int main(){
-    vector<int> timeSeries = {1,2};
-    int duration = 2;
-
-    Solution sol;
-
-    int count = sol.findPoisonedDuration(timeSeries,duration);
-
-    cout<<"\ncount: "<<count<<endl;
-
-    return 0;
-}
+        for(int second = timeSeries[0] ; second <= timeSeries.back()+duration+1, i<tsize ;) {
+            if(second == timeSeries[i]){
+                {
+                    int p = 0;
+                    while(p < duration){
+                        play[second-timeSeries[0]] = 1;
+                        ++count;
+                        ++p;
+                        ++second;
+                        if(i != tsize-1)
+                            if(second == timeSeries[i+1])
+                                break;
+                    }
+                }
+                if(i == tsize-1 )
+                    break;
+                i++;            
+            }
+            else
+                ++second;
+        }
+        return count;
+    }
+};
