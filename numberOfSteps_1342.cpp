@@ -17,9 +17,9 @@ Step 6) 1 is odd; subtract 1 and obtain 0.
 */
 
 #include<iostream>
-
 using namespace std;
 
+// APPROACH 1
 class Solution {
 public:
     int numberOfSteps(int num) {
@@ -33,22 +33,19 @@ public:
         }
         return i;
     }
-        // RECURSIVE APPROACH
-        //  if(num == 0){
-        //     return 0;
-        // }
-        // if(num % 2 == 0){
-        //     return 1 + numberOfSteps(num/2);
-        // }
-        // return 1 + numberOfSteps(num-1);
+
 };
 
-int main(){
-    int num = 14, count;
-
-    Solution sol;
-
-    count = sol.numberOfSteps(num);
-
-    cout <<count;
-}
+// APPROACH 2: RECURSIVE APPROACH
+class Solution {
+public:
+    int numberOfSteps(int num) {
+         if(num == 0){
+            return 0;
+        }
+        if(num % 2 == 0){
+            return 1 + numberOfSteps(num/2);
+        }
+        return 1 + numberOfSteps(num-1);
+    }
+};

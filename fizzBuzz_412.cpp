@@ -13,11 +13,11 @@ answer[i] == i (as a string) if none of the above conditions are true.
 #include<string>
 using namespace std;
 
+// APPROACH 1 : USING MAP : SCALABLE FUNCTION i.e. FizzBuzzJazz would also work with this approach
 class Solution {
 public:
     vector<string> fizzBuzz(int n) {
 
-        //Method 1
         vector<string> answer;
         map<int, string> mp{{3 , "Fizz"}, {5 , "Buzz"}};
 
@@ -32,47 +32,55 @@ public:
             answer.push_back(str);       
         }
 
-        //Method 2
-        // for(int i=1; i<=n; ++i)
-        // {   
-        //     string str = "";
-        //     if (i%3 == 0)
-        //         str = str + "Fizz";
-        //     if (i%5 == 0)
-        //         str = str + "Buzz";
-        //     if (i%3 != 0 && i%5 != 0)
-        //         str = to_string(i);
-        //     answer.push_back(str);
-        // }
+        return answer;
+    }
+};
 
-        //Method 3
-        // for(int i=1; i<=n; ++i)
-        // {
-        //     if(i%3==0 && i%5==0)
-        //         answer.push_back("FizzBuzz");
-        //     else if (i%3 == 0)
-        //         answer.push_back("Fizz");
-        //     else if (i%5 == 0)
-        //         answer.push_back("Buzz");
-        //     else {
-        //         string str = to_string(i);
-        //         answer.push_back(str);
-        //     }
-        // }
+// APPROACH 2 : USING STRING CONCATENATION
+class Solution {
+public:
+    vector<string> fizzBuzz(int n) {
+
+        vector<string> answer;
+
+        for(int i=1; i<=n; ++i)
+        {   
+            string str = "";
+            if (i%3 == 0)
+                str = str + "Fizz";
+            if (i%5 == 0)
+                str = str + "Buzz";
+            if (i%3 != 0 && i%5 != 0)
+                str = to_string(i);
+            answer.push_back(str);
+
+        }
 
         return answer;
     }
 };
 
-int main(){
-    int n = 15;
+// APPROACH 3: NAIVE APPROACH
+class Solution {
+public:
+    vector<string> fizzBuzz(int n) {
+        
+        vector<string> answer;
 
-    Solution sol;
+        for(int i=1; i<=n; ++i)
+        {
+            if(i%3==0 && i%5==0)
+                answer.push_back("FizzBuzz");
+            else if (i%3 == 0)
+                answer.push_back("Fizz");
+            else if (i%5 == 0)
+                answer.push_back("Buzz");
+            else {
+                string str = to_string(i);
+                answer.push_back(str);
+            }
+        }
 
-    vector<string> answer = sol.fizzBuzz(n);
-
-    for (auto& ch : answer)
-        cout << ch << ", ";
-
-    return 0;
-}
+        return answer;
+    }
+};

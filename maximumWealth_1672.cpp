@@ -16,11 +16,11 @@ Both customers are considered the richest with a wealth of 6 each, so return 6.
 
 using namespace std;
 
+// APPROACH 1 : BEST AND OPTIMISED
 class Solution {
 public:
     int maximumWealth(vector<vector<int>>& accounts) {
 
-        //Method 1
         int wealth = 0;
         for(vector<int> customer : accounts)
         {
@@ -31,33 +31,28 @@ public:
                 wealth = sum;
         }
 
-        //Method 2
-        // int row = accounts.size();
-        // int col = accounts[0].size();
-        // for(int i=0; i<row; i++)
-        // {
-        //     int sum = 0;
-        //     for(int j=0; j<col; j++)
-        //     {
-        //         sum += accounts[i][j];
-        //     }
-        //     if(sum > wealth)
-        //         wealth = sum;
-        // }
-
         return wealth;
     }
 };
 
-int main(){
+// APPROACH 2 : USING NAIVE ARRAYS
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
 
-    vector<vector<int>> accounts = {{1,2,3},{3,2,1}};
-
-    Solution sol;
-
-    int maxWealth = sol.maximumWealth(accounts);
-
-    cout << maxWealth<< endl;
-
-    return 0;
-}
+        int wealth = 0;
+        int row = accounts.size();
+        int col = accounts[0].size();
+        for(int i=0; i<row; i++)
+        {
+            int sum = 0;
+            for(int j=0; j<col; j++)
+            {
+                sum += accounts[i][j];
+            }
+            if(sum > wealth)
+                wealth = sum;
+        }
+        return wealth;
+    }
+};

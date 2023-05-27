@@ -20,32 +20,18 @@ Output: [0,1]
 #include<iostream>
 #include<vector>
 #include<unordered_map>
-
 using namespace std;
 
+
+// APPROACH 1 : USES LESS TIME AND SPACE COMPLEXITY THAN AAPROACH 2
+// INSERTING ELEMENTS IN IN THE SAME LOOP AS SEARCHING
+// though this method gives indices in reverse order but the answer is true
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> myMap;
         int num, complement;
 
-        // APPROACH 1
-        // INSERTING ELEMENTS IN myMap USING DIFFERENT LOOP
-        // for(int i=0; i<nums.size(); ++i)
-        //     myMap.insert(make_pair(nums[i],i ));
-
-        // for(int i=0; i<nums.size(); ++i){
-        //     complement = target - nums[i];
-        //     auto iter = myMap.find(complement);
-        //     if (iter != myMap.end() && i!=myMap[complement]){
-        //         return {i, myMap[complement]}
-        //     }
-        // }
-
-
-        // APPROACH 2 : USES LESS TIME AND SPACE COMPLEXITY THAN AAPROACH 1
-        // INSERTING ELEMENTS IN IN THE SAME LOOP AS SEARCHING
-        // though this method gives indices in reverse order but the answer is true
         for(int i=0; i<nums.size(); ++i){
             num = nums[i];
             complement =  target - num ;
@@ -54,6 +40,28 @@ public:
             myMap[num] = i;
         }
 
+        return {};
+    }
+};
+
+
+// APPROACH 1: INSERTING ELEMENTS IN myMap USING DIFFERENT LOOP
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> myMap;
+        int complement;
+
+        for(int i=0; i<nums.size(); ++i)
+            myMap.insert(make_pair(nums[i],i ));
+
+        for(int i=0; i<nums.size(); ++i){
+            complement = target - nums[i];
+            auto iter = myMap.find(complement);
+            if (iter != myMap.end() && i!=myMap[complement]){
+                return {i, myMap[complement]};
+            }
+        }
         return {};
     }
 };

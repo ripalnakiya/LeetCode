@@ -9,7 +9,6 @@ Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
 */
 #include<iostream>
 #include<vector>
-
 using namespace std;
 
 class Solution {
@@ -29,17 +28,3 @@ public:
 
     }
 };
-
-int main(){
-
-    vector<int> nums = {1,2,3,4};
-
-    Solution sol;
-
-    vector<int> array = sol.runningSum(nums);
-
-    for (auto& num : array)
-        cout << num << ", ";
-
-    return 0;
-}

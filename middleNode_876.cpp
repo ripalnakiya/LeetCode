@@ -15,7 +15,6 @@ Explanation: Since the list has two middle nodes with values 3 and 4, we return 
 */
 
 #include<iostream>
-
 using namespace std;
 
 //Definition for singly-linked list.
@@ -27,6 +26,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// APPROACH 1
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -40,19 +40,19 @@ public:
 };
 
 // APPROACH 2 : USES LESS SPACE
-// class Solution {
-// public:
-//     ListNode* middleNode(ListNode* head) {
-//         ListNode* middleNode = head;
-//         int i = 0;
-//         while(head){
-//             head = head->next;
-//             if(i){
-//                 middleNode = middleNode->next;
-//                 i = 0;
-//             }
-//             else i = 1;
-//         }
-//         return middleNode;
-//     }
-// };
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* middleNode = head;
+        int i = 0;
+        while(head){
+            head = head->next;
+            if(i){
+                middleNode = middleNode->next;
+                i = 0;
+            }
+            else i = 1;
+        }
+        return middleNode;
+    }
+};
