@@ -30,6 +30,8 @@ Explanation: The result of removing any element is [1,1].
 #include<vector>
 using namespace std;
 
+
+//APPROACH 1 : MOST OPTIMISED APPROACH
 class Solution {
 public:
     bool canBeIncreasing(vector<int>& nums) {
@@ -50,5 +52,79 @@ public:
             }
         }
         return count<=1;
+    }
+};
+
+
+// APPROACH 2
+class Solution {
+public:
+    bool canBeIncreasing(vector<int>& nums) {
+        int size = nums.size();
+        int prev = nums[0];
+        int i, count=0;
+
+        for(i=1; i<size; i++){
+            if(prev >= nums[i]){
+                    count++;
+                if(count > 1)
+                    return false;
+
+                if(i==1)
+                    prev = nums[i];            
+                else if(i>1 && nums[i-2] < nums[i])
+                    prev = nums[i];
+                else
+                    prev = nums[i-1];
+            }
+            else
+                prev = nums[i];
+        }
+        return true;
+    }
+};
+
+
+// APPROACH 3 : MY NAIVE APPROACH
+class Solution {
+public:
+    bool canBeIncreasing(vector<int>& nums) {
+        int i,j,blocked=0, len = nums.size();
+        bool val=true;
+
+        if(len == 2)
+            return val;
+
+        while(blocked < len){
+            val = true;
+            for(i=0,j=i+1; i<len-1 , j<len ;i++,j++){
+                if(i==blocked && j<len-1){
+                    i++;
+                    j++;
+                }
+                if(j==blocked){
+                    if(j<len-1){
+                    if(nums[i] >= nums[j+1]){
+                        val = false;
+                        break;
+                    }
+                    }
+                    else if (j == len-1){
+                        break;
+                    }
+
+                }
+                else{
+                    if(nums[i] >= nums[j]){
+                        val = false;
+                        break;
+                    }
+                }
+            }
+            if(val == true)
+                return val;
+            blocked++;
+        }
+        return val;
     }
 };
